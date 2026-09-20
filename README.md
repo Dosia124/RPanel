@@ -1,89 +1,95 @@
 # 🔐 RPanel - Media Vault
 
-**RPanel** — это локальное, высокозащищенное хранилище медиафайлов (изображения, GIF, видео) с шифрованием уровня "zero-knowledge". Все ваши файлы шифруются на диске с использованием симметричного шифрования Fernet (AES) и доступны только через удобный локальный веб-интерфейс. 
+**RPanel** is a local, highly secure media vault (images, GIFs, videos) with "zero-knowledge" encryption. All your files are encrypted on disk using Fernet (AES) symmetric encryption and are accessible only through a convenient local web interface.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
 ![Flask](https://img.shields.io/badge/Flask-2.x-black?logo=flask)
 
 ---
 
-## ✨ Основные возможности
+## ✨ Key Features
 
-- 🔒 **Шифрование на лету:** Мастер-ключ шифруется с помощью пароля (PBKDF2HMAC-SHA256). Файлы на диске хранятся в виде нечитаемых `.enc` блоков.
-- 🏷️ **Система тегов:** Назначайте теги любому медиафайлу. Теги подсвечиваются прямо в просмотрщике и кликабельны — клик по тегу мгновенно фильтрует галерею.
-- 🔍 **Умный поиск:** При вводе тегов появляется выпадающий список с автодополнением (до 5 вариантов), который показывает, сколько файлов связано с каждым тегом. По списку можно листать стрелочками на клавиатуре.
-- 🎞️ **Универсальный просмотрщик:** Поддержка изображений, анимированных GIF и видео (mp4, webm, mkv) с генерацией превью "на лету".
-- 🌐 **Локальный Web-UI:** Современный интерфейс в стиле Apple (поддержка светлой и темной темы) без необходимости установки баз данных. Все настройки кэшируются в браузере.
-- ⚡ **Автовыключение (Heartbeat):** Если вы закрыли вкладку или браузер, приложение поймет это и автоматически выключит сервер через 15 секунд. Также есть кнопка ручного завершения работы.
-- 🖥️ **Автономный `.exe`:** Может быть скомпилировано в один исполняемый файл без черного окна консоли и лишних зависимостей.
+- 🔒 **On-the-fly Encryption:** The master key is encrypted using a password (PBKDF2HMAC-SHA256). Files on disk are stored as unreadable `.enc` blocks.
+- 🏷️ **Tagging System:** Assign tags to any media file. Tags are highlighted directly in the viewer and are clickable—clicking a tag instantly filters the gallery.
+- 🔍 **Smart Search:** Typing tags brings up a dropdown with autocomplete (up to 5 suggestions), showing how many files are associated with each tag. You can navigate the list using keyboard arrow keys.
+- 🎞️ **Universal Viewer:** Supports images, animated GIFs, and videos (mp4, webm, mkv) with on-the-fly thumbnail generation.
+- 🌐 **Local Web UI:** Modern Apple-style interface (supports light and dark themes) without the need for databases. All settings are cached in the browser.
+- ⚡ **Auto-Shutdown (Heartbeat):** If you close the tab or browser, the app detects it and automatically shuts down the server after 15 seconds. There is also a manual shutdown button.
+- 🖥️ **Standalone `.exe`:** Can be compiled into a single executable file without a black console window or unnecessary dependencies.
 
 ---
 
-## ⌨️ Горячие клавиши (в режиме просмотра)
+## ⌨️ Keyboard Shortcuts (in Viewer Mode)
 
-| Клавиша | Действие |
+| Key | Action |
 | :--- | :--- |
-| `A` / `D` | Предыдущее / Следующее медиа |
-| `W` / `A` / `S` / `D` | Перемещение (Pan) — *только при зуме > 100%* |
-| `Z` / `X` | Увеличить / Уменьшить (Zoom) |
-| `C` | Сбросить зум и позицию |
-| `T` | Открыть панель редактирования тегов |
-| `Space` | Пауза / Воспроизведение (для видео) |
-| `H` | Скрыть/показать интерфейс (режим фокусировки) |
-| `Del` | Удалить текущий файл |
-| `Esc` | Закрыть просмотрщик |
+| `A` / `D` | Previous / Next media |
+| `W` / `A` / `S` / `D` | Pan (move) — *only when zoom > 100%* |
+| `Z` / `X` | Zoom In / Out |
+| `C` | Reset zoom and position |
+| `T` | Open tag editing panel |
+| `Space` | Pause / Play (for videos) |
+| `H` | Hide/Show UI (focus mode) |
+| `Del` | Delete current file |
+| `Esc` | Close viewer |
 
 ---
 
-## 🛠️ Установка и запуск (Из исходников)
+## 🛠️ Installation & Running (From Source)
 
-1. Убедитесь, что у вас установлен Python 3.8+.
-2. Клонируйте репозиторий:
+1. Make sure you have Python 3.8+ installed.
+2. Clone the repository:
    ```bash
    git clone https://github.com/Dosia124/RPanel.git
    cd RPanel
    ```
-3. Установите зависимости:
+3. Install dependencies:
    ```bash
    pip install flask cryptography pillow opencv-python-headless
    ```
-   *(Опционально: `opencv-python-headless` нужен для генерации превью у видеофайлов)*
-4. Запустите приложение:
+   *(Optional: `opencv-python-headless` is required for video thumbnail generation)*
+4. Run the application:
    ```bash
    python media_vault.py
    ```
-5. Браузер откроется автоматически. При первом запуске введите пароль — он станет вашим мастер-паролем для хранилища.
+5. Your browser will open automatically. On first launch, enter a password—this will become your master password for the vault.
 
 ---
 
-## 📦 Сборка в `.exe` (Windows)
+## 📦 Building the `.exe` (Windows)
 
-Для создания автономного файла с сжатием UPX и скрытой консолью, используйте `PyInstaller`. 
-Убедитесь, что в папке с проектом лежит `icon.ico` и `upx.exe` (если хотите сжатие).
+To create a standalone file with UPX compression and a hidden console, use `PyInstaller`. 
+Ensure that `icon.ico` and `upx.exe` are in the project folder (if you want compression).
 
-Выполните команду:
+Run the following command:
 
 ```bash
 py -m PyInstaller --onefile --windowed --upx-dir . --exclude-module tkinter --exclude-module matplotlib --exclude-module scipy --exclude-module pandas --name RPanel --icon icon.ico media_vault.py
 ```
 
-Готовый `RPanel.exe` появится в папке `dist/`.
+The compiled `RPanel.exe` will appear in the `dist/` folder.
 
 ---
 
-## 📂 Структура проекта
+## 📂 Project Structure
 
-- `media_vault.py` — основной скрипт (сервер, логика шифрования и Web-UI).
-- `salt.bin` — автоматическиически создающаяся криптографическая соль.
-- `master.key.enc` — зашифрованный мастер-ключ.
-- `tags.json` — локальная база данных тегов.
-- `inbox/` — папка для быстрого импорта (положите файлы сюда и нажмите кнопку Import).
-- `vault/` — зашифрованное хранилище (не удаляйте файлы внутри вручную!).
+- `media_vault.py` — main script (server, encryption logic, and Web UI).
+- `salt.bin` — auto-generated cryptographic salt.
+- `master.key.enc` — encrypted master key.
+- `tags.json` — local tag database.
+- `inbox/` — quick import folder (drop files here and click the Import button).
+- `vault/` — encrypted storage (do not manually delete files inside!).
 
 ---
 
-## ⚠️ Важно!
+## ⚠️ Important!
 
-**Не потеряйте свой пароль!** Без пароля расшифровать `master.key.enc` невозможно. Вся криптография построена на стандартах библиотеки `cryptography`, бэкдоров нет.
+**Do not lose your password!** Without the password, decrypting `master.key.enc` is impossible. All cryptography is built on the standards of the `cryptography` library; there are no backdoors.
 
-Если вам нужно перенести хранилище на новый ПК или пересобрать программу, просто скопируйте папку `vault/`, а также файлы `salt.bin`, `master.key.enc` и `tags.json`.
+If you need to transfer the vault to a new PC or rebuild the program, simply copy the `vault/` folder along with the `salt.bin`, `master.key.enc`, and `tags.json` files.
+
+---
+
+## 🤝 Open Source Contribution
+
+This is an open-source project! Anyone is welcome to modify the code, add their own features, or submit pull requests. Feel free to fork the repository and make it your own. If you encounter any bugs or have ideas for new features, please open an issue!
