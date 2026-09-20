@@ -2,6 +2,10 @@
 
 **RPanel** is a local, highly secure media vault (images, GIFs, videos) with "zero-knowledge" encryption. All your files are encrypted on disk using Fernet (AES) symmetric encryption and are accessible only through a convenient local web interface.
 
+Main idea is an invisible vault with any type of media inside.
+
+The whole app can be controlled with 1 arm!
+
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
 ![Flask](https://img.shields.io/badge/Flask-2.x-black?logo=flask)
 
